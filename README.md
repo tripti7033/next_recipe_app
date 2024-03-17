@@ -2,7 +2,6 @@
 
 Welcome to the Recipe Project! This project is built using Next.js and App Router and aims to provide a platform for searching, and discovering delicious recipes from various cuisines and categories.
 
-
 ## Demo video
 
 checkout for live video [here](https://drive.google.com/file/d/18KKSdw1AtuFfXR6ZzmBkul9aHK0foT2v/view?usp=drive_link)
