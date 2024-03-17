@@ -5,6 +5,11 @@ import {
   Button,
   FormControl,
   IconButton,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Menu,
+  MenuItem,
   TextField,
   ThemeProvider,
   Toolbar,
@@ -12,34 +17,34 @@ import {
   styled,
 } from "@mui/material";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 // import { useStyles } from "./header.styles";
 import { MainTheme } from "./MainTheme";
 import { NodeNextRequest } from "next/dist/server/base-http/node";
+import { CustomBox, InputTypography, LogoBox , ListTypography} from "@/app/style/header";
+import { useRouter } from "next/navigation";
 
+
+export let arr: string[] = ["snacks", "breakfast","dinner","lunch"]
 const Header = () => {
   // const classes1 = useStyles()
+  const router = useRouter()
   const loggedIn = true;
-
-  const LogoBox = styled(Link)({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  })
-  const CustomBox = styled(Box)({
-    display: "flex",
-    gap: "20px",
-  });
-  const InputTypography = styled(TextField)({
-        width: "350px",
-        border: "1px solid black",
-        borderRadius: "5px",
-
-  "& .MuiInputBase-formControl":{
-    height:"40px",
+  const [menu, setMenu] = useState<null | HTMLElement>(null)
+  const open = Boolean(menu);
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) =>{
+    setMenu(event.currentTarget);
   }
-  })
+  const handleClose = () =>{
+    setMenu(null);
+  }
+
+  const handleMenuItem = (item: string) => {
+    router.push(`/category/${item}`);
+    setMenu(null);
+  }
+
   return (
     <Box>
       <ThemeProvider theme={MainTheme}>
@@ -51,11 +56,12 @@ const Header = () => {
               <LogoBox
                 href="/"
                 // className={classes1.logo}
+                sx={{color: "#2a6e0d"}}
               >
-                <IconButton>
+                <IconButton sx={{color: "#2a6e0d"}}>
                   <LocalDiningIcon />
                 </IconButton>
-                <Typography variant="h6" component="div">
+                <Typography variant="h6" component="div" fontWeight={700}>
                   Recipe Adda
                 </Typography>
               </LogoBox>
@@ -64,13 +70,24 @@ const Header = () => {
               <InputTypography placeholder="search here" variant="outlined"/>
             
              <CustomBox>
-              <Typography><Link href="/">Home</Link></Typography>
-              <Typography><Link href="home">About</Link></Typography>
+              <ListTypography><Link href="/">Home</Link></ListTypography>
+              <ListTypography><Link href="about">About</Link></ListTypography>
 
-              <Typography><Link href="contact">Contact </Link></Typography>
+              <ListTypography><Link href="contact">Contact </Link></ListTypography>
 
-              <Typography><Link href="category">Category</Link></Typography>
-              <Typography><Link href="favourite">Favourite</Link></Typography>
+              <ListTypography><Link href="#" onMouseOver={handleClick} >Category</Link></ListTypography>
+
+              <Menu
+        anchorEl={menu}
+        open={open}
+        onClose={handleClose}
+      >
+        {arr.map((item,i )=> (
+         <MenuItem onClick={() => handleMenuItem(item)} key={i}>{item}</MenuItem>
+        ))}
+      </Menu>
+
+              {/* <ListTypography><Link href="favourite">Favourite</Link></ListTypography> */}
             </CustomBox>
 
           {/* {loggedIn ? (<Button>Login </Button>) : ( <Button>Logout</Button>)} */}

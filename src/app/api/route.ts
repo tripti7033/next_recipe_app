@@ -12,6 +12,7 @@ export interface DataType {
   difficulty: string,
   cuisine: string,
   caloriesPerServing: number,
+  
   tags: string[],
   image: string,
   rating: number,
@@ -33,14 +34,14 @@ export async function fetchData() {
     //  console.log( "fetched", data1.recipes[0]);
     const repository =  AppDataSource.getRepository(Recipes);
     // console.log(data);
-    data1.recipes.map((data: DataType) =>{
+    data1.recipes.map(async (data: DataType) => {
       const recipe = new Recipes();
 
       recipe.name = data.name;
       recipe.ingredients = data.ingredients;
       recipe.instructions = data.instructions;
       recipe.prepTimeMinutes = data.prepTimeMinutes;
-      recipe.cookTimeMinutes = data.prepTimeMinutes;
+      recipe.cookTimeMinutes = data.cookTimeMinutes;
       recipe.servings = data.servings;
       recipe.difficulty = data.difficulty;
       recipe.cuisine = data.cuisine;
@@ -49,10 +50,10 @@ export async function fetchData() {
       recipe.image = data.image;
       recipe.rating = data.rating;
       recipe.reviewCount = data.reviewCount;
-      recipe.mealType = data.mealType;
+      recipe.mealtype = data.mealType;
       
-     repository.save(recipe)
-    })
+   await  repository.save(recipe)
+    });
       console.log("data has been saved")
       
     } catch(err){

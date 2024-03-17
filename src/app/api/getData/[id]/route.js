@@ -38,15 +38,29 @@ import { AppDataSource } from "@/utils/database";
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
-export async function GET(req: NextApiRequest) {
-    const {id} = req.query
-console.log(id)
-    const repository = AppDataSource.getRepository(Recipes)
-    // const response = await repository.find({where:{id: id}});
-    // console.log(response);
+// export async function GET(req: NextApiRequest) {
+//     const {id} = req.query
+// console.log(id)
+//     const repository = AppDataSource.getRepository(Recipes)
+//     // const response = await repository.find({where:{id: id}});
+//     // console.log(response);
     
-    // return NextResponse.json(response)
-}
+//     // return NextResponse.json(response)
+// }
+export async function GET(request, { params}) {
+ 
+ 
+    var data = {
+      id: params?.id,
+      message: 'result from get'
+    }
+    const repository = AppDataSource.getRepository(Recipes)
+        const response = await repository.find({where:{id: data.id}});
+        console.log(response);
+        
+   
+  return Response.json(response )
+  }
 
 
 // export async function GET(request: NextApiRequest, { params }: { params: { id: string } }){

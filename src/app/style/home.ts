@@ -3,7 +3,7 @@ import { Box, Typography, styled } from "@mui/material";
 
 export const CustomBox = styled(Box)({
     height: "400px",
-    marginTop: "70px",
+    marginTop: "64px",
      backgroundColor: "#F5FEFD",
     // backgroundImage: 'url("/home3.jpg")',
     // backgroundSize: "cover",
@@ -24,6 +24,7 @@ export const TextBox = styled(Box)({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    
   })
 
   export const ListBox = styled(Box)({
@@ -43,11 +44,15 @@ export const TextBox = styled(Box)({
   // })
 
   export const CustomTypographyList = styled(Typography)({
-    // textAlign: "center",
-    padding: "50px 100px 0px 100px",
+    textAlign: "center",
+    padding: "30px",
+    // padding: "50px 100px 0px 100px",
     fontSize: "40px",
     fontFamily: "sans-serif",
-    textDecoration: "underLine",
+    // textDecoration: "underLine",
+    backgroundColor: "#8FBC8B",
+
+    color: "white",
     
   })
 

@@ -35,17 +35,17 @@ export class Recipes {
     @Column()
     cuisine: string 
 
-    @Column("simple-array")
+    @Column("text", { array: true })
     ingredients: string[] 
 
-    @Column("simple-array")
+    @Column("text", { array: true })
     instructions: string[]
 
-     @Column("simple-array")
+    @Column("text", { array: true })
     tags: string[]
     
-    @Column("simple-array")
-    mealType: string[]
+    @Column("text",{ array: true })
+    mealtype: string[]
 
 
 }

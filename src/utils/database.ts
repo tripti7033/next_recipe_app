@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
     password: "Tripti907@",
     database: "recipe",
     synchronize: true,
-    logging: true,
+    // logging: true,
     entities: [Recipes]
     // subscribers: [],
     // migrations: [],

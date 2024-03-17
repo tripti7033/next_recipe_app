@@ -5,12 +5,17 @@ import { CustomCard, CustomCardActions } from '@/app/style/card';
 import Link from 'next/link';
 // import {  } from "./style/home"
 const CardComponent = ({...item}) => {
+
+  const handleClick =()=>{
+    
+  }
   return (
    
     <CustomCard  variant='outlined'>
         <CardMedia
         component="img"
         height="200"
+        title={item.name}
         image={item.image}
         alt={item.name}/>
 
@@ -24,7 +29,7 @@ const CardComponent = ({...item}) => {
             <Link href={`/recipe/${item.id}`}>
             <Button>view Recipe</Button>
             </Link>
-            <IconButton>
+            <IconButton onClick={handleClick}>
                 <FavoriteBorderIcon/>
             </IconButton>
         </CustomCardActions>

@@ -4,7 +4,7 @@ import React from 'react'
 const NotFound = () => {
   return (
     <Box sx={{marginTop: "100px"}}>
-        NotFound
+        Page not Found
     </Box>
   )
 }
